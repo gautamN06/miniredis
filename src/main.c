@@ -8,11 +8,18 @@ int main() {
     //&db = memory address of db 
     init_database(&db);
 
-    printf("MiniRedis database is initialized.\n");
+    char *keys[] = {
+        "epithet",
+        "age",
+        "allegiance", 
+        "haki",
+        "island"
+    };
 
-    for (int i =0; i < TABLE_SIZE; i++){
-        //%p = format specifier for printing pointer's address 
-        printf("Bucket %d: %p\n", i, (void *)db.buckets[i]);
+    for (int i = 0; i < 5; i++){
+        int index = hash(keys[i]);
+
+        printf("Key: %s | Bucket: %d\n", keys[i], index);
     }
 
     return 0;

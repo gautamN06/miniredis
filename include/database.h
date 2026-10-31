@@ -19,4 +19,6 @@ Entry *create_entry(const char *key, const char *value);
 
 void init_database(Database *db); 
 
+int hash(const char *key); 
+
 #endif 

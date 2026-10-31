@@ -20,3 +20,14 @@ void init_database(Database *db){
         db->buckets[i] = NULL; 
     }
 }
+
+int hash(const char *key){
+    int sum = 0;
+
+    for (int i = 0; key[i] != '\0'; i++)
+    {
+        sum += key[i];
+    }
+
+    return sum % TABLE_SIZE; 
+}

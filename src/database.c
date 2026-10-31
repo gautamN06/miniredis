@@ -14,3 +14,9 @@ Entry *create_entry(const char *key, const char *value){
 
     return newEntry; 
 }
+
+void init_database(Database *db){
+    for (int i = 0; i < TABLE_SIZE; i++){
+        db->buckets[i] = NULL; 
+    }
+}

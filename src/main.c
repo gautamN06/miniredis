@@ -4,18 +4,16 @@
 
 int main() {
 
-    Entry *firstEntry = create_entry("username", "John Doe"); 
-    
-    if (firstEntry == NULL){
-        printf("Failed to create memory for this entry.\n");
-        return 1;
+    Database db; 
+    //&db = memory address of db 
+    init_database(&db);
+
+    printf("MiniRedis database is initialized.\n");
+
+    for (int i =0; i < TABLE_SIZE; i++){
+        //%p = format specifier for printing pointer's address 
+        printf("Bucket %d: %p\n", i, (void *)db.buckets[i]);
     }
-
-
-    printf("Key: %s\n", firstEntry->key);
-    printf("Value: %s\n", firstEntry->value);
-
-    free(firstEntry); 
 
     return 0;
 }

@@ -1,7 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H 
 
-
+#define TABLE_SIZE 10 
 
 typedef struct Entry {
     char *key; //pointer to string representing key 
@@ -11,8 +11,12 @@ typedef struct Entry {
 } Entry; 
 
 
+typedef struct Database {
+    Entry *buckets[TABLE_SIZE];
+} Database; 
+
 Entry *create_entry(const char *key, const char *value); 
 
-
+void init_database(Database *db); 
 
 #endif 

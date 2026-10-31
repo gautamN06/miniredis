@@ -11,6 +11,8 @@ typedef struct Entry {
 } Entry; 
 
 
+Entry *create_entry(const char *key, const char *value); 
+
 
 
 #endif 

@@ -1,16 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "database.h"
 
 int main() {
 
-    Entry firstEntry; 
-    firstEntry.key = "username";
-    firstEntry.value = "John Doe";
-    firstEntry.next = NULL; 
+    Entry *firstEntry = create_entry("username", "John Doe"); 
+    
+    if (firstEntry == NULL){
+        printf("Failed to create memory for this entry.\n");
+        return 1;
+    }
 
-    printf("Key: %s\n", firstEntry.key);
-    printf("Value: %s\n", firstEntry.value);
 
+    printf("Key: %s\n", firstEntry->key);
+    printf("Value: %s\n", firstEntry->value);
+
+    free(firstEntry); 
 
     return 0;
 }

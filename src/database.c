@@ -33,11 +33,26 @@ int hash(const char *key){
     return sum % TABLE_SIZE; 
 }
 
+//the SET from redis 
 int insert_entry(Database *db, const char *key, const char *value){
 
     //find its bucket
     int index = hash(key);
 
+
+    Entry *curr = db->buckets[index];
+
+    while (curr != NULL){
+
+        if(strcmp(curr->key, key) == 0){
+            curr->value = (char *) value; 
+            return 1; 
+        }
+
+        curr = curr->next; 
+    }
+
+    //key don't exist, create new entry
     Entry *newEntry = create_entry(key, value);
 
     if(newEntry == NULL) {
@@ -54,6 +69,7 @@ int insert_entry(Database *db, const char *key, const char *value){
     return 1; 
 }
 
+//the GET from redis 
 const char *get_entry(Database *db, const char *key){
 
     //finding the bucket 
@@ -74,4 +90,34 @@ const char *get_entry(Database *db, const char *key){
 
     return NULL; 
 
+}
+
+//the DEL from redis 
+
+int delete_entry(Database *db, const char *key){
+
+    int index = hash(key);
+
+    Entry *curr = db->buckets[index];
+    Entry *prev = NULL; 
+
+    while (curr != NULL){
+
+        if(strcmp(curr->key, key) == 0){
+            if (prev == NULL){
+                db->buckets[index] = curr->next; 
+            }else{
+                prev->next = curr->next; 
+            }
+
+            free(curr);
+
+            return 1; 
+        }
+
+        prev = curr; 
+        curr = curr->next; 
+
+    }
+    return 0; 
 }

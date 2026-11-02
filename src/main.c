@@ -16,12 +16,12 @@ int main() {
 
     
 
-    const char *result = get_entry(&db, "epithet");
+    printf("Before deletion: %s\n", get_entry(&db, "epithet"));
 
-    if(result != NULL){
-        printf("Found: %s\n", result);
-    }else{
-        printf("Key not found!\n");
+    delete_entry(&db, "epithet");
+
+    if(get_entry(&db, "eipthet") == NULL){
+        printf("Entry successfully deleted!\n");
     }
 
     return 0;

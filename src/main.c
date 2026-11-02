@@ -8,18 +8,24 @@ int main() {
     //&db = memory address of db 
     init_database(&db);
 
-    char *keys[] = {
-        "epithet",
-        "age",
-        "allegiance", 
-        "haki",
-        "island"
-    };
+    insert_entry(&db, "epithet", "Red Hair");
+    insert_entry(&db, "age", "40");
+    insert_entry(&db, "allegiance", "Red Hair Pirates");
+    insert_entry(&db, "haki", "Conquerors");
+    insert_entry(&db, "island", "Elbaf");
 
-    for (int i = 0; i < 5; i++){
-        int index = hash(keys[i]);
+    for(int i = 0; i < TABLE_SIZE; i++){
+        printf("Bucket %d: ", i);
 
-        printf("Key: %s | Bucket: %d\n", keys[i], index);
+        Entry *curr = db.buckets[i];
+
+        while(curr != NULL){
+            printf("[%s:%s] -> ", curr->key, curr->value);
+
+            curr = curr->next; 
+        }
+
+        printf("NULL\n");
     }
 
     return 0;

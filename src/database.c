@@ -31,3 +31,24 @@ int hash(const char *key){
 
     return sum % TABLE_SIZE; 
 }
+
+int insert_entry(Database *db, const char *key, const char *value){
+
+    //find its bucket
+    int index = hash(key);
+
+    Entry *newEntry = create_entry(key, value);
+
+    if(newEntry == NULL) {
+        return 0; 
+    }
+
+    //connecting the new entry to the exisiting linked list 
+    newEntry->next = db->buckets[index];
+
+
+    //make the new entry the first entry in bucket 
+    db->buckets[index] = newEntry;
+
+    return 1; 
+}

@@ -21,4 +21,6 @@ void init_database(Database *db);
 
 int hash(const char *key); 
 
+int insert_entry(Database *db, const char *key, const char *value); 
+
 #endif 

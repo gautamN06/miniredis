@@ -23,4 +23,7 @@ int hash(const char *key);
 
 int insert_entry(Database *db, const char *key, const char *value); 
 
+const char *get_entry(Database *db, const char *key);
+
+
 #endif 

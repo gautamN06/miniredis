@@ -14,18 +14,14 @@ int main() {
     insert_entry(&db, "haki", "Conquerors");
     insert_entry(&db, "island", "Elbaf");
 
-    for(int i = 0; i < TABLE_SIZE; i++){
-        printf("Bucket %d: ", i);
+    
 
-        Entry *curr = db.buckets[i];
+    const char *result = get_entry(&db, "epithet");
 
-        while(curr != NULL){
-            printf("[%s:%s] -> ", curr->key, curr->value);
-
-            curr = curr->next; 
-        }
-
-        printf("NULL\n");
+    if(result != NULL){
+        printf("Found: %s\n", result);
+    }else{
+        printf("Key not found!\n");
     }
 
     return 0;

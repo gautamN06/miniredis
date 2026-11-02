@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "database.h"
+#include <string.h> 
 
 Entry *create_entry(const char *key, const char *value){
     Entry *newEntry = malloc(sizeof(Entry));
@@ -51,4 +52,26 @@ int insert_entry(Database *db, const char *key, const char *value){
     db->buckets[index] = newEntry;
 
     return 1; 
+}
+
+const char *get_entry(Database *db, const char *key){
+
+    //finding the bucket 
+    int index = hash(key);
+
+    Entry *curr = db->buckets[index];
+
+    while(curr != NULL){
+
+        //check whehter this is the entry or not 
+        if(strcmp(curr->key, key) == 0){
+            return curr->value;
+        }
+
+        curr = curr->next; 
+
+    }
+
+    return NULL; 
+
 }

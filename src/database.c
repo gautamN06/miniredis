@@ -121,3 +121,14 @@ int delete_entry(Database *db, const char *key){
     }
     return 0; 
 }
+
+//the EXISTS from redis
+
+int exists_entry(Database *db, const char *key){
+
+    if (get_entry(db, key) != NULL){
+        return 1;
+    }
+
+
+}

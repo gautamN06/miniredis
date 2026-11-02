@@ -28,5 +28,6 @@ const char *get_entry(Database *db, const char *key);
 
 int delete_entry(Database *db, const char *key); 
 
+int exists_entry(Database *db, const char *key); 
 
 #endif 

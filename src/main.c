@@ -16,12 +16,12 @@ int main() {
 
     
 
-    printf("Before deletion: %s\n", get_entry(&db, "epithet"));
+    if(exists_entry(&db, "epithet")){
+        printf("Eipthet exists\n");
+    }
 
-    delete_entry(&db, "epithet");
-
-    if(get_entry(&db, "eipthet") == NULL){
-        printf("Entry successfully deleted!\n");
+    if(!exists_entry(&db, "sword")){
+        printf("Sword does not exist.\n");
     }
 
     return 0;

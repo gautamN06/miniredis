@@ -16,13 +16,8 @@ int main() {
 
     
 
-    if(exists_entry(&db, "epithet")){
-        printf("Eipthet exists\n");
-    }
-
-    if(!exists_entry(&db, "sword")){
-        printf("Sword does not exist.\n");
-    }
+    printf("Keys in database: \n");
+    print_keys(&db);
 
     return 0;
 }

@@ -1,3 +1,4 @@
+#include <stdio.h> 
 #include <stdlib.h>
 #include "database.h"
 #include <string.h> 
@@ -128,6 +129,25 @@ int exists_entry(Database *db, const char *key){
 
     if (get_entry(db, key) != NULL){
         return 1;
+    }
+
+
+}
+
+
+void print_keys(Database *db){
+
+    for (int i = 0; i < TABLE_SIZE; i++){
+
+        //start at first entry in this bucket 
+        Entry *curr = db->buckets[i];
+
+        while(curr!= NULL){
+            printf("%s\n", curr->key);
+
+            curr = curr->next; 
+        }
+
     }
 
 

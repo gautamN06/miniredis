@@ -30,4 +30,6 @@ int delete_entry(Database *db, const char *key);
 
 int exists_entry(Database *db, const char *key); 
 
+void print_keys(Database *db);
+
 #endif 

@@ -16,7 +16,12 @@ int main() {
 
     
 
-    printf("Keys in database: \n");
+    printf("Before flush all..\n");
+    print_keys(&db);
+
+    flush_database(&db);
+
+    printf("\nAfter flush....\n");
     print_keys(&db);
 
     return 0;

@@ -32,4 +32,6 @@ int exists_entry(Database *db, const char *key);
 
 void print_keys(Database *db);
 
+void flush_database(Database *db); 
+
 #endif 

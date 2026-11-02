@@ -152,3 +152,25 @@ void print_keys(Database *db){
 
 
 }
+
+
+void flush_database(Database *db){
+
+
+    for(int i = 0; i < TABLE_SIZE; i++){
+
+        Entry *curr = db->buckets[i];
+
+        while(curr != NULL){
+            Entry *next = curr->next; 
+            
+            free(curr);
+
+            curr =  next; 
+        }
+
+        db->buckets[i] = NULL; 
+
+    }
+
+}

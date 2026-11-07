@@ -3,18 +3,27 @@
 #include "database.h"
 #include <string.h> 
 
-Entry *create_entry(const char *key, const char *value){
-    Entry *newEntry = malloc(sizeof(Entry));
+static void free_entry(Entry *e){
+    free(e->key);
+    free(e->value);
+    free(e);
+}
 
-    if (newEntry == NULL){
-        return NULL; 
+Entry *create_entry(const char *key, const char *value){
+    Entry *e = malloc(sizeof(Entry));
+    if (!e) return NULL;
+
+    e->key = strdup(key);
+    e->value = strdup(value);
+    if (!e->key || !e->value){
+        free(e->key);
+        free(e->value);
+        free(e);
+        return NULL;
     }
 
-    newEntry->key = (char *)key;
-    newEntry->value = (char *)value; 
-    newEntry->next = NULL; 
-
-    return newEntry; 
+    e->next = NULL;
+    return e; 
 }
 
 void init_database(Database *db){
@@ -126,12 +135,7 @@ int delete_entry(Database *db, const char *key){
 //the EXISTS from redis
 
 int exists_entry(Database *db, const char *key){
-
-    if (get_entry(db, key) != NULL){
-        return 1;
-    }
-
-
+    return get_entry(db, key) != NULL; 
 }
 
 
